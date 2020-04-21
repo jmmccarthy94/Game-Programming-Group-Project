@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShipMovementV1 : MonoBehaviour
 {
-    public float movementSpeed = 25.0f;
+    public float movementSpeed = 30.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -17,11 +17,17 @@ public class ShipMovementV1 : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+        var cameraOffset = GameObject.Find("Main Camera").transform.position.z + 20;
 
         Vector3 direction = new Vector3(horizontal, vertical, 0);
-        Vector3 finalDirection = new Vector3(horizontal, vertical, 5.0f);
+        Vector3 finalDirection = new Vector3(horizontal, vertical, 10.0f);
 
-        transform.position += new Vector3(horizontal, vertical, 0) * movementSpeed * Time.deltaTime;
+        transform.position += new Vector3(horizontal, vertical, cameraOffset) * movementSpeed * Time.deltaTime;
+        // Limit to camera view
+        transform.position = new Vector3(
+            Mathf.Clamp(transform.position.x, -16, 16),
+            Mathf.Clamp(transform.position.y, -5, 15),
+            cameraOffset);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(finalDirection), Mathf.Deg2Rad * 50.0f);
     }
 }
