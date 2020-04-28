@@ -30,4 +30,13 @@ public class ShipMovementV1 : MonoBehaviour
             cameraOffset);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(finalDirection), Mathf.Deg2Rad * 50.0f);
     }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.tag == "Asteroid")
+        {
+            Debug.Log("Collision!!");
+            Destroy(col.gameObject);
+        }
+    }
 }
