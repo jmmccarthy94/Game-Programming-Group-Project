@@ -6,7 +6,7 @@ public class SpawnAsteroids : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] AsteroidPrefabs;
-    public GameObject explosion;
+    //public GameObject explosion;
     public GameObject next;
     public float endTimer = 60.0f;
     int counter;
@@ -61,15 +61,16 @@ public class SpawnAsteroids : MonoBehaviour
     {
         Debug.Log("ExternalAsteroid Called...");
     }
-
+/*
     void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.tag == "Bullet")
+        if(col.collider.CompareTag("Bullet"))
         {
             Destroy(col.gameObject);
-            Destroy(this);
-            Instantiate(explosion, transform.position, transform.rotation);
+            Destroy(this.gameObject);
+            //Instantiate(explosion, transform.position, transform.rotation);
         }
     }
+    */
 
 }

@@ -16,11 +16,12 @@ public class AsteroidCollision : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.tag == "Bullet")
+        if(col.collider.CompareTag("Bullet"))
         {
             Destroy(col.gameObject);
-            Destroy(this);
-            Instantiate(explosion, transform.position, transform.rotation);
+            Destroy(this.gameObject);
+            GameObject exp = Instantiate(explosion, transform.position, transform.rotation);
+            exp.transform.localScale = new Vector3(5,5,5);
         }
     }
 }
