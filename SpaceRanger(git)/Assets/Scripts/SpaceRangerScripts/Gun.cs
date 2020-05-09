@@ -27,8 +27,10 @@ public class Gun : MonoBehaviour
             EnemyCombat enemyCombat = hit.transform.GetComponent<EnemyCombat>();
             if(enemyCombat != null)
             {
+                Debug.Log("Its  here");
                 enemyCombat.TakeDamage(damage);
             }
+            
         }
     }
 }

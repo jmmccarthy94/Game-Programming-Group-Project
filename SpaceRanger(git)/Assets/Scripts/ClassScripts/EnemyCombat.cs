@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿
+using System.Collections;
+using UnityEngine;
 
 public class EnemyCombat : MonoBehaviour
 {
@@ -9,19 +11,22 @@ public class EnemyCombat : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
-        
+        Debug.Log("OOOOO");
     }
     public void TakeDamage(float amount)
     {
-
-        animator.SetTrigger("TakeDamage");
-        
-        health -=amount;
-        if(IsDead())
+        if (IsDead())
         {
-            
+
             Debug.Log(health);
             Die();
+        }
+        else
+        {
+            Debug.Log("WHY");
+            animator.SetTrigger("TakeDamage");
+
+            health -= amount;
         }
         
     }
@@ -41,6 +46,12 @@ public class EnemyCombat : MonoBehaviour
     {
         animator.SetFloat("Speed", 0f);
         animator.SetTrigger("death");
+        StartCoroutine(Death());
+        
+    }
+    IEnumerator Death()
+    {
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
 }

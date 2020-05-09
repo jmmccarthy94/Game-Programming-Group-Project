@@ -51,6 +51,17 @@ public class PlayerHealth : MonoBehaviour
         }
         */
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.CompareTag("Enemy"))
+        {
+
+            currentHealth = TakeDamage(currentHealth);
+            timer = 0;
+        }
+       // Debug.Log(collision.collider.name);
+    }
     public int TakeDamage(int currentHealth)
     {
         //yield return new WaitForSeconds(2);
