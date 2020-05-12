@@ -8,7 +8,7 @@ public class SpawnAsteroids : MonoBehaviour
     private GameObject[] AsteroidPrefabs;
     //public GameObject explosion;
     public GameObject next;
-    public float endTimer = 60.0f;
+    public float endTimer = 120.0f;
     int counter;
     int curr;
 
@@ -25,7 +25,7 @@ public class SpawnAsteroids : MonoBehaviour
         curr = (int)endTimer;
         if(curr == counter)
         {
-            InternalAsteroids(20, curr);
+            InternalAsteroids(40, curr);
             ExternalAsteroids(20);
 
             counter = curr - 1;
@@ -43,14 +43,14 @@ public class SpawnAsteroids : MonoBehaviour
         for (int i=0; i < amount; i++) 
         {
             Debug.Log("InternalAsteroid Called...");
-            var pos = new Vector3(Random.Range(-50, 50), Random.Range(-40, 40), this.transform.position.z);
+            var pos = new Vector3(Random.Range(-60, 60), Random.Range(-40, 40), this.transform.position.z);
             var chosenAsteroid = AsteroidPrefabs[Random.Range(0, AsteroidPrefabs.Length)];
             var asteroid = (GameObject)Instantiate(chosenAsteroid , pos, Random.rotation);
             asteroid.gameObject.transform.localScale += new Vector3(Random.Range(0, 4), Random.Range(0, 4), Random.Range(0, 4));
 
             Destroy(asteroid, 12.0f);
         }
-        if (nextTime == 50)
+        if (nextTime == 20)
         {
             var nextLevel = (GameObject)Instantiate(next , new Vector3(0, 0, this.transform.position.z), Quaternion.identity);
         }

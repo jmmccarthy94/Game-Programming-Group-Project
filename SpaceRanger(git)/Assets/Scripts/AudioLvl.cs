@@ -2,13 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class AudioLvl : MonoBehaviour
 {
     public AudioMixer audioMixer;
+    public Slider slider;
 
-    public void SetVolume(float volume)
+    void Start(){
+        slider.value = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
+    }
+    public void SetVolume()
     {
-        audioMixer.SetFloat("volume", volume);
+        float sliderValue = slider.value;
+        audioMixer.SetFloat("MusicVol", Mathf.Log10(sliderValue) * 20);
+        PlayerPrefs.SetFloat("MusicVolume", sliderValue);
     }
 }

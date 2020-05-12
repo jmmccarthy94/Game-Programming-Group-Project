@@ -7,12 +7,20 @@ public class Shoot : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
     public float velocity = 500;
+    private AudioSource gunFire;
+    public AudioClip clip;
 
+
+  //  void Start(){
+   //     audio = GetComponent<AudioSource>();
+    //}
 
     // Update is called once per frame
     void Update()
     {
         if(Input.GetButtonDown("Fire3") && !PauseMenu.GameIsPaused) {
+            GetComponent<AudioSource>().PlayOneShot(clip,0.35f);
+            Debug.Log("Played");
             Fire();
         }
     }
