@@ -16,9 +16,13 @@ public class NextLevel : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+        Debug.Log(col);
         if(col.gameObject.CompareTag("Player"))
         {
             //anim.SetBool("fade", true);
+            Cursor.lockState = CursorLockMode.None;
+
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             //Debug.Log("Collision with end level");
             //next = GameObject.Find("GameplayPlane").GetComponent(triggerAnimation);

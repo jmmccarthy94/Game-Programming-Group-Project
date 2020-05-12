@@ -34,7 +34,7 @@ public class AsteroidCollision : MonoBehaviour
         {
             Debug.Log("Collision!!");
             Destroy(this.gameObject);
-            col.gameObject.GetComponent<SimpleHealthBar_SpaceshipExample.PlayerHealth>().TakeDamage(25); 
+            col.gameObject.GetComponent<SimpleHealthBar_SpaceshipExample.PlayerHealth>().TakeDamage(20); 
         }
     }
 }
