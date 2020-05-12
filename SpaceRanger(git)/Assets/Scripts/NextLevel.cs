@@ -19,7 +19,7 @@ public class NextLevel : MonoBehaviour
 
         void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.tag == "Player")
+        if(col.gameObject.CompareTag("Player"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
