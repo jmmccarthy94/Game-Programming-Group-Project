@@ -7,11 +7,13 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+    public GameObject deathMenuUI;
+    public GameObject introPage;
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) && !introPage.activeInHierarchy && !deathMenuUI.activeInHierarchy)
         {
             if(GameIsPaused)
             {
@@ -42,6 +44,18 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Loading menu");
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
+    }
+
+    public void reloadLvl1()
+    {
+        Debug.Log("Reload level");
+        //deathMenuUI.SetActive(false);
+        SceneManager.LoadScene(1);
+    }
+
+    public void death()
+    {
+        deathMenuUI.SetActive(true);
     }
 
     public void QuitGame()

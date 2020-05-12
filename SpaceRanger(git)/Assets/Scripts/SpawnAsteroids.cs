@@ -6,7 +6,7 @@ public class SpawnAsteroids : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] AsteroidPrefabs;
-    public GameObject explosion;
+    //public GameObject explosion;
     public GameObject next;
     public float endTimer = 60.0f;
     int counter;
@@ -25,17 +25,12 @@ public class SpawnAsteroids : MonoBehaviour
         curr = (int)endTimer;
         if(curr == counter)
         {
-            InternalAsteroids(20);
+            InternalAsteroids(20, curr);
             ExternalAsteroids(20);
 
             counter = curr - 1;
         }
         Debug.Log(curr);
-
-        if(curr == 50)
-        {
-            var nextLevel = (GameObject)Instantiate(next , new Vector3(0, 0, this.transform.position.z), Quaternion.identity);
-        }
 
         if(curr < 0)
         {
@@ -43,7 +38,7 @@ public class SpawnAsteroids : MonoBehaviour
         }
     }
 
-    void InternalAsteroids(int amount)
+    void InternalAsteroids(int amount, int nextTime)
     {
         for (int i=0; i < amount; i++) 
         {
@@ -55,21 +50,26 @@ public class SpawnAsteroids : MonoBehaviour
 
             Destroy(asteroid, 12.0f);
         }
+        if (nextTime == 50)
+        {
+            var nextLevel = (GameObject)Instantiate(next , new Vector3(0, 0, this.transform.position.z), Quaternion.identity);
+        }
     }
 
     void ExternalAsteroids(int amount)
     {
         Debug.Log("ExternalAsteroid Called...");
     }
-
+/*
     void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.tag == "Bullet")
+        if(col.collider.CompareTag("Bullet"))
         {
             Destroy(col.gameObject);
-            Destroy(this);
-            Instantiate(explosion, transform.position, transform.rotation);
+            Destroy(this.gameObject);
+            //Instantiate(explosion, transform.position, transform.rotation);
         }
     }
+    */
 
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShipMovementV1 : MonoBehaviour
 {
     public float movementSpeed = 30.0f;
+    //public GameObject damageFX;
 
     // Start is called before the first frame update
     void Start()
@@ -31,12 +32,16 @@ public class ShipMovementV1 : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(finalDirection), Mathf.Deg2Rad * 50.0f);
     }
 
+    /*
     void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.tag == "Asteroid")
+        if(col.collider.CompareTag("Asteroid"))
         {
             Debug.Log("Collision!!");
             Destroy(col.gameObject);
+            GameObject exp = Instantiate(damageFX, transform.position, transform.rotation);
+            col.gameObject.GetComponent<PlayerHealth>().TakeDamage(25);
         }
     }
+    */
 }

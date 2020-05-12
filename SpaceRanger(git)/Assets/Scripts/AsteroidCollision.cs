@@ -6,6 +6,7 @@ public class AsteroidCollision : MonoBehaviour
 {
 
     public GameObject explosion;
+    public int asteroidHealth = 100;
 
 
     // Update is called once per frame
@@ -14,13 +15,26 @@ public class AsteroidCollision : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision col)
+    void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.tag == "Bullet")
+        if(col.GetComponent<Collider>().CompareTag("Bullet"))
         {
+            asteroidHealth -= 10;
+
+            GameObject exp1 = Instantiate(explosion, transform.position, transform.rotation);
             Destroy(col.gameObject);
-            Destroy(this);
-            Instantiate(explosion, transform.position, transform.rotation);
+            if(asteroidHealth <= 0)
+            {
+                Destroy(this.gameObject);
+                GameObject exp2 = Instantiate(explosion, transform.position, transform.rotation);
+                exp2.transform.localScale = new Vector3(5,5,5);
+            }   
+        }
+        else if(col.GetComponent<Collider>().CompareTag("Player"))
+        {
+            Debug.Log("Collision!!");
+            Destroy(this.gameObject);
+            col.gameObject.GetComponent<SimpleHealthBar_SpaceshipExample.PlayerHealth>().TakeDamage(25); 
         }
     }
 }
