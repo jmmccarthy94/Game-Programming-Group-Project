@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: faff4e71621cfa64582e837b57a15288
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - character: {fileID: 100096, guid: 398da42bc4f6f6e44852a9f96c6c4e41, type: 3}
+  - weaponsPanel: {instanceID: 0}
+  - actionsPanel: {instanceID: 0}
+  - camerasPanel: {instanceID: 0}
+  - buttonPrefab: {instanceID: 0}
+  - motionSpeed: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
