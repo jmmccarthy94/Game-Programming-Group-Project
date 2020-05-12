@@ -4,13 +4,16 @@ public class Gun : MonoBehaviour
 {
     public float damage = 10f;
     public float range = 100f;
+    private AudioSource shootAudiosSource;
 
     public GameObject GunObject;
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        shootAudiosSource = GetComponent<AudioSource>();
+        if (Input.GetMouseButtonDown(0))
         {
+            shootAudiosSource.Play();
             Shoot();
         }
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * range, Color.green);

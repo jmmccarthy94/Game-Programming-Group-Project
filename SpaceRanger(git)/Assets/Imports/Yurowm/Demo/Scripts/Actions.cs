@@ -14,6 +14,7 @@ public class Actions : MonoBehaviour {
 	float rotX;
 	float rotZ;
 	float rotY;
+	public GameObject boundaryText;
 
 	const int countOfDamageAnimations = 3;
 	int lastDamageAnimation = -1;
@@ -76,6 +77,26 @@ public class Actions : MonoBehaviour {
 
 	}
 
+	private void OnCollisionEnter(Collision collision)
+	{
+		boundaryText.SetActive(false);
+		if(collision.collider.CompareTag("Walls"))
+		{
+			boundaryText.SetActive(true);
+
+			Stay();
+			Debug.Log("Wall touch");
+			StartCoroutine(SetInactive());
+		}
+		
+			
+	}
+	IEnumerator SetInactive()
+	{
+		yield return new WaitForSeconds(2);
+		boundaryText.SetActive(false);
+
+	}
 	public void Stay () {
 		animator.SetBool("Aiming", false);
 		animator.SetFloat ("Speed", 0f);
